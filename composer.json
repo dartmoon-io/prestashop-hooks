@@ -1,0 +1,23 @@
+{
+    "name": "dartmoon/prestashop-hooks",
+    "description": "PrestaShop Hooks made OOP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dartmoon",
+            "email": "hello@dartmoon.io",
+            "homepage": "https://dartmoon.io"
+        },
+        {
+            "name": "Alessandro Pasqualini",
+            "email": "alessandro@dartmoon.io"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Dartmoon\\Hooks\\": "src/"
+        }
+    }
+}
