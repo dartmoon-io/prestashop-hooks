@@ -5,9 +5,8 @@ namespace Dartmoon\Hooks;
 use Dartmoon\Hooks\Contracts\Hook;
 use Dartmoon\Hooks\Contracts\HookDispatcher as ContractsHookDispatcher;
 use Exception;
-use Module;
 
-abstract class HookDispatcher implements ContractsHookDispatcher
+class HookDispatcher implements ContractsHookDispatcher
 {
     /**
      * Registered hooks
