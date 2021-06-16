@@ -4,7 +4,7 @@ namespace Dartmoon\Hooks;
 
 use Dartmoon\Hooks\Contracts\Hook;
 use Dartmoon\Hooks\Contracts\HookDispatcher as ContractsHookDispatcher;
-use Exception;
+use Dartmoon\Hooks\Exceptions\HookNotFoundException;
 
 class HookDispatcher implements ContractsHookDispatcher
 {
@@ -16,7 +16,7 @@ class HookDispatcher implements ContractsHookDispatcher
     /**
      * Register a new hook
      */
-    public function registerHook(Hook $hook)
+    public function register(Hook $hook)
     {
         $this->hooks[$hook->getName()] = $hook;
     }
@@ -32,10 +32,10 @@ class HookDispatcher implements ContractsHookDispatcher
     /**
      * Dispacth the hook execution
      */
-    public function dispatchHook($hookName, $params)
+    public function dispatch($hookName, array $params = [])
     {
         if (!isset($this->hooks[$hookName])) {
-            throw new Exception();
+            throw new HookNotFoundException();
         }
 
         return $this->hooks[$hookName]->execute($params);

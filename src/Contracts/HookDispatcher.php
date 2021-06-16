@@ -2,22 +2,20 @@
 
 namespace Dartmoon\Hooks\Contracts;
 
-use Module;
-
 interface HookDispatcher
 {
     /**
      * Register a new hook
      */
-    public function registerHook(Hook $hook);
+    public function register(Hook $hook);
 
     /**
-     * Return available hooks
+     * Return installable hooks
      */
     public function getAvailableHooks();
 
     /**
      * Dispacth the hook execution
      */
-    public function dispatchHook($hookName, $params);
+    public function dispatch($hookName, array $params = []);
 }
