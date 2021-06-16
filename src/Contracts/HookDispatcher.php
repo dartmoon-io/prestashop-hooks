@@ -9,15 +9,15 @@ interface HookDispatcher
     /**
      * Register a new hook
      */
-    public function register(Hook $hook);
+    public function registerHook(Hook $hook);
 
     /**
-     * Install all hooks
+     * Return available hooks
      */
-    public function install(Module $module);
+    public function getAvailableHooks();
 
     /**
      * Dispacth the hook execution
      */
-    public function dispatch($hookName, $params);
+    public function dispatchHook($hookName, $params);
 }

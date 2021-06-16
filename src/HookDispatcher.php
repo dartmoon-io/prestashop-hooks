@@ -17,7 +17,7 @@ abstract class HookDispatcher implements ContractsHookDispatcher
     /**
      * Register a new hook
      */
-    public function register(Hook $hook)
+    public function registerHook(Hook $hook)
     {
         $this->hooks[$hook->getName()] = $hook;
     }
@@ -25,17 +25,15 @@ abstract class HookDispatcher implements ContractsHookDispatcher
     /**
      * Install all hooks
      */
-    public function install(Module $module)
-    {
-        foreach ($this->hooks as $hook) {
-            $module->registerHook($hook->getName());
-        }
+    public function getAvailableHooks()
+    {   
+        return array_keys($this->hooks);
     }
 
     /**
      * Dispacth the hook execution
      */
-    public function dispatch($hookName, $params)
+    public function dispatchHook($hookName, $params)
     {
         if (!isset($this->hooks[$hookName])) {
             throw new Exception();
