@@ -26,7 +26,8 @@ trait HasHookDispatcher
 
         // Register all hooks found
         foreach ($this->hooks as $hookClass) {
-            $this->hookDispatcher->register(new $hookClass($this));
+            $hook = new $hookClass($this, $this->context);
+            $this->hookDispatcher->register($hook);
         }
     }
 
