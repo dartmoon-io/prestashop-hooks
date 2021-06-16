@@ -32,12 +32,16 @@ class HookDispatcher implements ContractsHookDispatcher
     /**
      * Dispacth the hook execution
      */
-    public function dispatch($hookName, array $params = [])
+    public function dispatch($name, array $params = [])
     {
-        if (!isset($this->hooks[$hookName])) {
-            throw new HookNotFoundException();
+        // Let's search the hook and execute it
+        foreach ($this->hooks as $hookName => $hook) {
+            if (strtolower($hookName) == strtolower($name)) {
+                return $hook->execute($params);
+            }
         }
 
-        return $this->hooks[$hookName]->execute($params);
+        // No hook found, so let's return and exception
+        throw new HookNotFoundException("Hook '{$hookName}' not found!");
     }
 }
