@@ -6,7 +6,7 @@ use Module;
 
 interface Hook
 {
-    public function __constrct(Module $module);
+    public function __construct(Module $module);
 
     /**
      * Get the hook name
