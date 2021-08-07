@@ -1,3 +1,3 @@
-# PrestaShop Utils
+# PrestaShop Hooks
 
-PrestaShop Utils is a collection of utils for basic operations for PrestaShop.
+PrestaShop Hooks is a library that let you move all module hooks into separate classes.
