@@ -3,15 +3,15 @@
 namespace Dartmoon\Hooks;
 
 use Context;
-use Dartmoon\Hooks\Contracts\Hook;
+use Dartmoon\Hooks\Contracts\HookGroup;
 use Module;
 
-abstract class AbstractHook implements Hook
+abstract class AbstractHookGroup implements HookGroup
 {
     /**
-     * Name of the hook
+     * Name of the hooks that this group define
      */
-    protected $name = null;
+    protected $hooks = null;
 
     /**
      * Module instance
@@ -33,15 +33,10 @@ abstract class AbstractHook implements Hook
     }
 
     /**
-     * Get the hook name
+     * Get the hook names defined into this group
      */
-    public function getName()
+    public function getHooks()
     {
-        return $this->name;
+        return $this->hooks;
     }
-    
-    /**
-     * Execute the hook
-     */
-    abstract public function execute($params);
 }

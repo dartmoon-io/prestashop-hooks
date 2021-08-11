@@ -7,7 +7,7 @@ interface HookDispatcher
     /**
      * Register a new hook
      */
-    public function register(Hook $hook);
+    public function register(HookGroup $group);
 
     /**
      * Return installable hooks

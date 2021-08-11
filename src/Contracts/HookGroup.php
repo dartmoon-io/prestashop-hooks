@@ -5,17 +5,12 @@ namespace Dartmoon\Hooks\Contracts;
 use Context;
 use Module;
 
-interface Hook
+interface HookGroup
 {
     public function __construct(Module $module, Context $context);
 
     /**
-     * Get the hook name
+     * Get the hook names defined into this group
      */
-    public function getName();
-
-    /**
-     * Execute the hook
-     */
-    public function execute($params);
+    public function getHooks();
 }

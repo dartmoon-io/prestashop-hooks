@@ -2,8 +2,8 @@
 
 namespace Dartmoon\Hooks;
 
-use Dartmoon\Hooks\Contracts\Hook;
 use Dartmoon\Hooks\Contracts\HookDispatcher as ContractsHookDispatcher;
+use Dartmoon\Hooks\Contracts\HookGroup;
 use Dartmoon\Hooks\Exceptions\HookNotFoundException;
 
 class HookDispatcher implements ContractsHookDispatcher
@@ -16,9 +16,16 @@ class HookDispatcher implements ContractsHookDispatcher
     /**
      * Register a new hook
      */
-    public function register(Hook $hook)
+    public function register(HookGroup $group)
     {
-        $this->hooks[$hook->getName()] = $hook;
+        $hooks = $group->getHooks();
+        if (is_string($hooks)) {
+            $hooks = [$hooks];
+        }
+
+        foreach ($hooks as $hook) {
+            $this->hooks[$hook] = $group;
+        }
     }
 
     /**
@@ -34,10 +41,11 @@ class HookDispatcher implements ContractsHookDispatcher
      */
     public function dispatch($name, array $params = [])
     {
-        // Let's search the hook and execute it
-        foreach ($this->hooks as $hookName => $hook) {
+        // Let's search the group in which the hook
+        // belongs to and execute the method
+        foreach ($this->hooks as $hookName => $group) {
             if (strtolower($hookName) == strtolower($name)) {
-                return $hook->execute($params);
+                return $group->{$name}($params);
             }
         }
 
