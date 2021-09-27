@@ -50,6 +50,6 @@ class HookDispatcher implements ContractsHookDispatcher
         }
 
         // No hook found, so let's return and exception
-        throw new HookNotFoundException("Hook '{$hookName}' not found!");
+        throw new HookNotFoundException("Hook '{$name}' not found!");
     }
 }
