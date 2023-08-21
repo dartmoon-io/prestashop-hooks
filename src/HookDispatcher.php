@@ -4,7 +4,7 @@ namespace Dartmoon\Hooks;
 
 use Dartmoon\Hooks\Contracts\HookDispatcher as ContractsHookDispatcher;
 use Dartmoon\Hooks\Contracts\HookGroup;
-use Dartmoon\Hooks\Exceptions\HookNotFoundException;
+use Tools;
 
 class HookDispatcher implements ContractsHookDispatcher
 {
@@ -49,7 +49,7 @@ class HookDispatcher implements ContractsHookDispatcher
             }
         }
 
-        // No hook found, so let's return and exception
-        throw new HookNotFoundException("Hook '{$name}' not found!");
+        // No hook found, so let's display an error
+        Tools::displayError(sprintf('Hook %s not found', $name));
     }
 }
